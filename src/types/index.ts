@@ -43,3 +43,13 @@ export interface BaseStat {
         url: string;
     }
 }
+export interface PokemonNotFoundProps {
+    title: string;
+    text: string;
+    handler: any;
+}
+
+export interface PokedexBodyProps {
+    data: PokemonType;
+    handler: any;
+}

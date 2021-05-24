@@ -32,12 +32,16 @@ const translator: any = {
     }
 };
 
-function BaseStats(baseStats: BaseStat[] | undefined): JSX.Element {
+interface PokemonBaseStatsProps {
+    baseStats: BaseStat[];
+}
+
+function PokemonBaseStats(props: PokemonBaseStatsProps): JSX.Element {
     return (
         <>
             <h4>Base Stats</h4>
             {
-                baseStats?.map((baseStat: BaseStat, idx: number) => {
+                props.baseStats?.map((baseStat: BaseStat, idx: number) => {
                     return (
                         <Container key={idx} className="p-1">
                             <Row sm={12}>
@@ -49,7 +53,7 @@ function BaseStats(baseStats: BaseStat[] | undefined): JSX.Element {
                                     <ProgressBar
                                         animated
                                         now={baseStat?.base_stat}
-                                        // label={`${baseStat?.base_stat}/300`}
+                                        label={`${baseStat?.base_stat}/300`}
                                         max={300}
                                         variant={translator[baseStat?.stat.name]['variant']}
                                     />
@@ -63,4 +67,4 @@ function BaseStats(baseStats: BaseStat[] | undefined): JSX.Element {
     )
 }
 
-export default BaseStats
+export default PokemonBaseStats;
