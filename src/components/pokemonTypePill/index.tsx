@@ -3,10 +3,7 @@ import typeColorMap from '../../utils/typeColorMap';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-
-interface PokemonTypePillProps {
-    types: any[]
-}
+import { PokemonTypePillProps } from '../../types';
 
 function PokemonTypePill(props: PokemonTypePillProps): JSX.Element {
     return (

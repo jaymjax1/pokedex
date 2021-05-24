@@ -2,11 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Container from 'react-bootstrap/Container';
-
-interface PokemonHeightWeightProps {
-    height: number;
-    weight: number;
-}
+import { PokemonHeightWeightProps } from '../../types';
 
 function PokemonHeightWeight(props: PokemonHeightWeightProps): JSX.Element {
     return (

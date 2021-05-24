@@ -3,38 +3,8 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { BaseStat } from '../../types';
-
-const translator: any = {
-    'hp': {
-        name: 'HP',
-        variant: 'success',
-    },
-    'attack': {
-        name: 'ATK',
-        variant: 'success',
-    },
-    'defense': {
-        name: 'DEF',
-        variant: 'success',
-    },
-    'special-attack': {
-        name: 'S.ATK',
-        variant: 'success',
-    },
-    'special-defense': {
-        name: 'S.DEF',
-        variant: 'success',
-    },
-    'speed': {
-        name: 'SPD',
-        variant: 'success',
-    }
-};
-
-interface PokemonBaseStatsProps {
-    baseStats: BaseStat[];
-}
+import { PokemonBaseStatsProps, BaseStat } from '../../types';
+import { baseStateAbbreviations } from '../../utils/baseStatAbbreviations';
 
 function PokemonBaseStats(props: PokemonBaseStatsProps): JSX.Element {
     return (
@@ -47,7 +17,7 @@ function PokemonBaseStats(props: PokemonBaseStatsProps): JSX.Element {
                             <Row sm={12}>
                                 <Col
                                     xs={2}>
-                                    {translator[baseStat?.stat.name]['name']}
+                                    {baseStateAbbreviations[baseStat?.stat.name]['name']}
                                 </Col>
                                 <Col xs={10}>
                                     <ProgressBar
@@ -55,7 +25,7 @@ function PokemonBaseStats(props: PokemonBaseStatsProps): JSX.Element {
                                         now={baseStat?.base_stat}
                                         label={`${baseStat?.base_stat}/300`}
                                         max={300}
-                                        variant={translator[baseStat?.stat.name]['variant']}
+                                        variant={baseStateAbbreviations[baseStat?.stat.name]['variant']}
                                     />
                                 </Col>
                             </Row>

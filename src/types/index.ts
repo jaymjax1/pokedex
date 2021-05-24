@@ -53,3 +53,16 @@ export interface PokedexBodyProps {
     data: PokemonType;
     handler: any;
 }
+
+export interface PokemonBaseStatsProps {
+    baseStats: BaseStat[];
+}
+
+export interface PokemonHeightWeightProps {
+    height: number;
+    weight: number;
+}
+
+export interface PokemonTypePillProps {
+    types: any[]
+}
