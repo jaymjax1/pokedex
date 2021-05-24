@@ -1,43 +1,14 @@
 import React, { useState } from 'react';
+import PokedexHOC from '../../components/pokedexHOC';
 import { debounce } from 'lodash';
-
 import Card from 'react-bootstrap/Card'
-import ListGroup from 'react-bootstrap/ListGroup'
-import ProgressBar from 'react-bootstrap/ProgressBar'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-
 import { useGetPokemon } from '../../services/pokemon';
-import { BaseStat } from '../../types';
+import BaseStats from '../../components/baseStats';
+import LoadingState from '../../components/loadingState';
 
-
-const translator: any = {
-    'hp': {
-        name: 'HP',
-        variant: 'success',
-    },
-    'attack': {
-        name: 'ATK',
-        variant: 'success',
-    },
-    'defense': {
-        name: 'DEF',
-        variant: 'success',
-    },
-    'special-attack': {
-        name: 'S.ATK',
-        variant: 'success',
-    },
-    'special-defense': {
-        name: 'S.DEF',
-        variant: 'success',
-    },
-    'speed': {
-        name: 'SPD',
-        variant: 'success',
-    }
-};
 
 function HomePage(): JSX.Element {
 
@@ -59,15 +30,15 @@ function HomePage(): JSX.Element {
 
     if (isPokemonLoading) {
         return (
-            <div>
-                LOADING...
-            </div>
+            <PokedexHOC>
+                <LoadingState />
+            </PokedexHOC>
         )
     }
 
     if (pokemonError) {
         return (
-            <Card style={{ width: '24rem' }}>
+            <PokedexHOC>
                 <Card.Img variant="top" src="holder.js/100px180" />
                 <Card.Body>
                     <Card.Title>No Pokemon Found</Card.Title>
@@ -80,16 +51,19 @@ function HomePage(): JSX.Element {
                         onChange={(e) => debounceOnChange(e.target.value)}
                     />
                 </Card.Body>
-            </Card>
+            </PokedexHOC>
         )
     }
 
     return (
-        <Card style={{ width: '28rem', backgroundColor: '#333333' }} className="m-5 text-center text-light shadow-lg rounded" >
+        <PokedexHOC>
             <Card.Img
                 variant="top"
                 src={pokemonData?.sprites.other['official-artwork'].front_default}
-                style={{ backgroundColor: '#ffffff' }}
+                style={{
+                    backgroundColor: '#98cb98',
+                    border: '50px solid #f2f2f2'
+                }}
             />
             <Card.Body >
                 <Card.Title>
@@ -101,7 +75,15 @@ function HomePage(): JSX.Element {
                             {
                                 pokemonData?.types.map((type: any, idx: number) => {
                                     return (
-                                        <Col key={idx}><span className='badge badge-pill badge-primary' style={{ backgroundColor: 'grey' }}>{type?.type?.name}</span></ Col>
+                                        <Col
+                                            key={idx}>
+                                            <span
+                                                className='badge badge-pill badge-primary'
+                                                style={{ backgroundColor: 'grey' }}
+                                            >
+                                                {type?.type?.name}
+                                            </span>
+                                        </ Col>
                                     )
                                 })
                             }
@@ -134,35 +116,7 @@ function HomePage(): JSX.Element {
                 placeholder='Type here to search...'
                 onChange={(e) => debounceOnChange(e.target.value.toLowerCase())}
             />
-        </Card>
-    )
-}
-
-function BaseStats(baseStats: BaseStat[] | undefined): JSX.Element {
-    return (
-        <>
-            <h4>Base Stats</h4>
-            {
-                baseStats?.map((baseStat: BaseStat, idx: number) => {
-                    return (
-                        <Container key={idx} className="p-1">
-                            <Row sm={12}>
-                                <Col xs={2}>{translator[baseStat?.stat.name]['name']}</Col>
-                                <Col xs={10}>
-                                    <ProgressBar
-                                        animated
-                                        now={baseStat?.base_stat}
-                                        // label={`${baseStat?.base_stat}/300`}
-                                        max={300}
-                                        variant={translator[baseStat?.stat.name]['variant']}
-                                    />
-                                </Col>
-                            </Row>
-                        </Container>
-                    )
-                })
-            }
-        </>
+        </PokedexHOC>
     )
 }
 
