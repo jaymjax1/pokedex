@@ -1,47 +1,27 @@
-# Getting Started with Create React App
+# Coding Style Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Directory Structure
+I like to have my directory structure broken out by files type. See below for the breakout and descriptions:
 
-## Available Scripts
+<pre>
+<h3>Components:</h3>This directory contains any reusable components to be used inside of pages. Some React projects have two types of components: composed and complex. Typically, my components directory consist of composed components, and anything simpler are components usually from Bootcamp or Material UI. Any components that get's reused over and over again as the project grows will be moved into a homegrown external library
 
-In the project directory, you can run:
+<h3>Constants:</h3>Any and all static text is contained inside of the constants directory
 
-### `yarn start`
+<h3>Contexts:</h3>All state data that is applicable to all components is store inside of this directory. Typically, I try to avoid so much usage of context unless necessary. A good use of context would be switching between light/dark themes
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<h3>Hooks:</h3>Any hooks outside of the react library are stored here
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<h3>Pages:</h3>Pages are simply the screens inside of your application. It consists of data, composed, and simple components which makes up the entirety of the frontend experience
 
-### `yarn test`
+<h3>Services:</h3>All functionality related to fetching/mutating data from an external data store is kept in this directory. I like to further break it down by domain, and inside each domain are files for queries, mutations, fetch/axios calls, and a top level index file.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<h3>Styles:</h3>All top level styles are stored in this directory. Anything component specific or small will either be inline css or included in the components folder. I try to keep styles as simple as possible by leverage existing ui frameworks such as Material-UI or Bootstrap, and in some cases, a home grown UI library.
 
-### `yarn build`
+<h3>Tests:</h3>This ones self-explanatory! All tests, whether they are snapshot or unit test should go in this directory.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<h3>Types:</h3>All Typescript interfaces and types belong in this directory. It is a recent pivot of mine to store types at a higher level outside of the components, but I'm liking it so far!
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<h3>Utils:</h3>Any specialty functionality unrelated to rendering a component, and not directly hitting an api is stored here.
+</pre>
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# pokedex
