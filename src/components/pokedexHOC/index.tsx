@@ -2,9 +2,15 @@ import React, { Suspense } from 'react';
 import { ReactComponent as Pokeball } from '../../assets/pokeball.svg';
 import Card from 'react-bootstrap/Card';
 
+const fallbackElement = (
+    <div className="d-flex justify-content-center">
+        <Pokeball />
+    </div>
+);
+
 function PokedexHOC(props: any): JSX.Element {
     return (
-        <Suspense fallback={Pokeball}>
+        <Suspense fallback={fallbackElement}>
             <Card
                 style={{
                     width: '28rem',
